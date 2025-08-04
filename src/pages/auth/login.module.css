@@ -1,0 +1,12 @@
+.cnxBtn{
+    height: auto;
+    background-color: #090a09d0;
+    color: white;
+}
+
+.otp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
