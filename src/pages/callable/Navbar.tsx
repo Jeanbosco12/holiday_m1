@@ -36,75 +36,17 @@ export default function Navbar() {
     }
   };
 
-  const handleTrain = async () => {
-    const loadingSwal = Swal.fire({
-      title: "Entraînement en cours...",
-      text: "Le modèle est en cours d'entraînement avec les données météo.",
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-      },
-    });
 
-    try {
-      const res = await fetch("http://localhost:8000/api/train_online", {
-        method: "POST",
-      });
-
-      const data = await res.json();
-      Swal.close();
-
-      if (res.ok) {
-        Swal.fire({
-          icon: "success",
-          title: "Succès !",
-          text: data.message || "Le modèle a été entraîné avec succès.",
-          confirmButtonText: "OK",
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Erreur d'entraînement",
-          text: data.message || "Une erreur est survenue lors de l'entraînement.",
-        });
-      }
-    } catch (err) {
-      Swal.close();
-      Swal.fire({
-        icon: "error",
-        title: "Erreur de connexion",
-        text: "Voulez-vous réessayer hors ligne?",
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          router.push("/train/upload");
-        }})
-
-    }
-  };
-
-
-  const toggleTheme = () => {
+  function toggleTheme() {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
-  };
+  }
 
   return (
     <TooltipProvider>
       <div className="flex justify-between items-center px-4 py-2 border-b bg-background shadow-sm">
-        {/* Logo ou titre ici */}
-        <div className="text-xl font-semibold">Storm</div>
-
-        {/* Actions */}
+        <div className="text-xl font-semibold">Sekoly</div>
+        
         <div className="flex items-center gap-2">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" onClick={handleTrain}>
-                <UploadCloud className="h-5 w-5" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Entraînement</TooltipContent>
-          </Tooltip>
-
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon" onClick={toggleTheme}>

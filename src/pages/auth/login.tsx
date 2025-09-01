@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/input-otp";
 import Navbar from "../callable/Navbar";
 import Swal from "sweetalert2";
+import { FanIcon } from "lucide-react";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -226,7 +227,7 @@ export default function Login() {
                     </Dialog>
 
                     <Button variant="outline" className="w-full">
-                        Se connecter avec Google
+                        Se connecter avec Google <FanIcon />
                     </Button>
                 </CardFooter>
             </Card></>
